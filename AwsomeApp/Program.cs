@@ -12,33 +12,23 @@ namespace AwsomeApp
     // to communicate with the user
     class Program
     {
-        // Stop controls the moment the application is halted (finished)
-        private static bool Stop = false;
-
         static void Main(string[] args)
         {
-            do
-            {   // Writing the menu to the screen
-                Console.Clear();
-                Console.WriteLine("Main menu AwsomeApp\n");
-                Console.WriteLine("F)iles");
-                Console.WriteLine("H)elp");
-                Console.WriteLine();
-                Console.WriteLine("E)nd");
-                // waiting for a character to be pressed on the keyboard (any char)
-                char Input = Console.ReadKey().KeyChar;
-                // counts the number of times a character is pressed in the menu
-                Counter++;
-                switch (Input) // only if a case is fullfilled the action will be taken.
-                {
-                    case 'F': ShowFiles(); break;
-                    case 'H': ShowHelp();break;
-                    case 'E': Stop = true;break;
-                        // all other character trigger a error message to be displayed
-                    default: Console.WriteLine("Enter A allowed Key, Please"); break;
-                }
-            }
-            while (!Stop);
+            Menu menu = new Menu("Main menu AwsomeApp\n");
+
+            //menu.AddItem("F)iles", 'F', () => ShowFiles());
+            menu.AddItem("&Files", ShowFiles);
+            //menu.AddItem("H)elp", 'H', () => ShowHelp());
+            menu.AddItem("&Help", ShowHelp);
+            //menu.AddItem("E)nd", 'E', () => EndProgram());
+            menu.AddItem("&End", EndProgram);
+
+            menu.Run();
+        }
+
+        private static void EndProgram()
+        {
+            Environment.Exit(0);
         }
 
         // The application consists of a number of actions which work on 
