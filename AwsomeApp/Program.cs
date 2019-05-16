@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using ConsoleMenu;
 using System.IO;
 
-namespace AwsomeApp
+namespace AesomeApp
 {
     // An example program which uses a simple menu 
     // to communicate with the user
